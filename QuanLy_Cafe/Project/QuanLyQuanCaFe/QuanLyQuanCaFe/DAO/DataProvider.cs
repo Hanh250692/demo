@@ -10,7 +10,18 @@ namespace QuanLyQuanCaFe.DAO
 {
     class DataProvider
     {
-       private string connectionSTR = "Data Source=.\\SQLEXPRESS;Initial Catalog=QuanLyQuanCafe;Integrated Security=True";
+        private static DataProvider intstance;
+        public static DataProvider Intstance 
+        {
+            get { if (intstance == null) intstance = new DataProvider(); return DataProvider.intstance; }
+            private set { DataProvider.intstance = value; }
+        }
+        private DataProvider() { }
+
+        private string connectionSTR = "Data Source=.\\SQLEXPRESS;Initial Catalog=QuanLyQuanCafe;Integrated Security=True";
+
+     
+
         public DataTable ExecuteQuery(string query, object[] parameter=null)
         {
             DataTable data = new DataTable();
